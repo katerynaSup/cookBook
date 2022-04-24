@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Likes counters</h1>
+
+<div id="likes_counters">
+  <% @likes_counters.each do |likes_counter| %>
+    <%= render likes_counter %>
+    <p>
+      <%= link_to "Show this likes counter", likes_counter %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New likes counter", new_likes_counter_path %>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+  <div class="container">
+    <%= link_to 'PennInTouch Lite', login_path, class: 'navbar-brand' %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <!-- Should only be seen if logged in-->
+          <li class="nav-item"><%= link_to 'Home', "/home", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Explore', "/courses", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Profile', "/users", method: :delete, class: 'nav-link' %></li>
+          <!-- Should only be seen if NOT logged in -->
+          <li class="nav-item"><%= link_to 'Sign Up', "/users/new", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Log In', '/login', class: 'nav-link' %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
