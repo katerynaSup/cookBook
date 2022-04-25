@@ -1,4 +1,15 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <div class="container py-5 h-100">
   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,31 +22,29 @@
             <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
             <p class="text-white-50 mb-5">Please enter your information!</p>
 
+
+
             <div class="form-outline form-white mb-4">
-              <input type="text" class="form-control form-control-lg" />
-              <label class="form-label" for="typeEmailX">First Name</label>
+              <%= form.label :first_name, class:"control-label col-sm-3" %>
+              <%= form.text_field :first_name, class:"form-control form-control-lg" %>
             </div>
 
             <div class="form-outline form-white mb-4">
-              <input type="text" class="form-control form-control-lg" />
-              <label class="form-label" for="typeEmailX">Last Name</label>
+              <%= form.label :last_name, class:"control-label col-sm-3" %>
+              <%= form.text_field :last_name, class:"form-control form-control-lg" %>
             </div>
 
             <div class="form-outline form-white mb-4">
-              <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-              <label class="form-label" for="typeEmailX">Username</label>
+              <%= form.label :username,  class:"control-label col-sm-3"  %>
+              <%= form.text_field :username,  class:"form-control form-control-lg" %>
             </div>
 
             <div class="form-outline form-white mb-4">
-              <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-              <label class="form-label" for="typePasswordX">Password</label>
+              <%= form.label :password, class:"control-label col-sm-3" %>
+              <%= form.text_field :password_hash, class:"form-control form-control-lg" %>
             </div>
-
-
 
             <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
-
-
 
             <div>
               <p class="mb-0"> <a href= "/login" class="text-white-50 fw-bold"> Back To Login</a>
@@ -48,3 +57,5 @@
     </div>
   </div>
 </div>
+<% end %>
+

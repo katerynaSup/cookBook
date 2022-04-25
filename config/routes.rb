@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  root to: 'sessions#new'
+  resources :posts do
+    resources :comments
+  end
   resources :likes_counters
-  resources :comments
   resources :likes
-  resources :posts
   resources :users
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'

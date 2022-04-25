@@ -1,0 +1,31 @@
+<style>
+    h1 {
+        font-family: Avenir, fantasy;}
+    h6 {font-family: Avenir, fantasy;font-size: 28px; color: black;font-weight: bolder}
+    h7 {font-family: Avenir, fantasy; font-size: 20px; color: black}
+    h5 {font-family: Avenir, fantasy;font-size: 17px; font-weight: lighter;}
+    h9 {font-family: Avenir, fantasy; font-size: 17px; font-weight: bold}
+
+</style>
+<div class="container-fluid">
+    <div id="header"></div>
+    <div id="profile">
+        <div class="image">
+          <img src="https://a4-images.myspacecdn.com/images03/2/85a286a4bbe84b56a6d57b1e5bd03ef4/300x300.jpg" alt="" class="rounded-circle" />
+        </div>
+    </div>
+
+      <div class="name">
+        <h6>Name: <%=@user.full_name %></h6>
+      </div>
+      <div class="nickname">
+       <h7>Username: @<%= @user.username %></h7>
+      </div>
+
+  <h6>
+    <a href = '<%= new_post_path %>' class="btn btn-outline-dark btn-sm" role="button" aria-pressed="true"> <h4>Make a New Post</h4></a>
+  </h6>
+    </div>
+  </div>
+
+
