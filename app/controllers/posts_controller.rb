@@ -1,9 +1,26 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user, only: %i[index show update destroy edit]
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    require 'uri'
+    require 'net/http'
+    require 'openssl'
+
+    url = URI("https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=name_of_recipe")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(url)
+    request["X-RapidAPI-Host"] = 'tasty.p.rapidapi.com'
+    request["X-RapidAPI-Key"] = '4a92f1d450msh17a2e5659d3ab54p130911jsn608bfcae348a'
+
+    response = http.request(request)
+    puts response.read_body
   end
 
   # GET /posts/1 or /posts/1.json

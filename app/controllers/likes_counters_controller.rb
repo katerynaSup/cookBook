@@ -1,5 +1,9 @@
 class LikesCountersController < ApplicationController
+  before_action :authenticate_user
+  before_action :set_user
+  before_action :set_post
   before_action :set_likes_counter, only: %i[ show edit update destroy ]
+  
 
   # GET /likes_counters or /likes_counters.json
   def index
@@ -56,15 +60,34 @@ class LikesCountersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def like_post
+    puts 'Does not create likes counter'
+    LikesCounter.create([{ user: @user, post: @post }]) unless @user.posts.include?(@post)
+  end
+  
+  def unlike_post
+    LikesCounter.find_by(@user).destroy if @user.posts.include?(@post)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_likes_counter
-      @likes_counter = LikesCounter.find(params[:id])
-    end
+  def set_likes_counter
+    @likes_counter = LikesCounter.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def likes_counter_params
-      params.require(:likes_counter).permit(:user_id, :post_id)
-    end
+  def likes_counter_params
+    params.require(:likes_counter).permit(:user_id, :post_id)
+  end
+  
+  def set_post
+    # TODO: find the course using `course_id`
+    @post = Post.find_by(id: params[:post_id])
+  end
+
+  def set_user
+    # TODO: find the user using `course_id`
+    @user = User.find_by(id: params[:user_id])
+  end
 end

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Explores</h1>
+
+<div id="explores">
+  <% @explores.each do |explore| %>
+    <%= render explore %>
+    <p>
+      <%= link_to "Show this explore", explore %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New explore", new_explore_path %>

@@ -1,15 +1,15 @@
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% if user.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+      <% user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="container py-5 h-100">
   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,7 +19,7 @@
 
           <div class="mb-md-5 mt-md-4 pb-5">
 
-            <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+            <h2 class="fw-bold mb-2 text-uppercase">Edit profile</h2>
             <p class="text-white-50 mb-5">Please enter your information!</p>
 
 
@@ -45,7 +45,7 @@
               <%= form.text_field :password_hash, class:"form-control form-control-lg" %>
             </div>
 
-            <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
+            <button class="btn btn-outline-light btn-lg px-5" type="submit">Update</button>
 
             <div>
               <p class="mb-0"> <a href= "/login" class="text-white-50 fw-bold"> Back To Login</a>
@@ -59,4 +59,3 @@
   </div>
 </div>
 <% end %>
-

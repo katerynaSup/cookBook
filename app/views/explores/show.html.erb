@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @explore %>
+
+<div>
+  <%= link_to "Edit this explore", edit_explore_path(@explore) %> |
+  <%= link_to "Back to explores", explores_path %>
+
+  <%= button_to "Destroy this explore", @explore, method: :delete %>
+</div>

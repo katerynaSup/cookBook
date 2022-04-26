@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  has_many :posts, dependent: :destroy
+  has_many :posts
   has_many :likes_counters, dependent: :destroy
+  has_many :liked_posts, through: :likes_counters, source: :posts
+  has_one_attached :avatar
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -23,5 +25,8 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name}  #{last_name}"
+  end
+
+  def client
   end
 end

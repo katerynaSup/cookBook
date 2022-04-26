@@ -10,9 +10,15 @@
 <div class="container-fluid">
     <div id="header"></div>
     <div id="profile">
-        <div class="image">
-          <img src="https://a4-images.myspacecdn.com/images03/2/85a286a4bbe84b56a6d57b1e5bd03ef4/300x300.jpg" alt="" class="rounded-circle" />
-        </div>
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar,
+                      :style => "width: 100px; height: 100px; object-fit: cover; border-radius: 50px" %>
+      <% else %>
+        <%= image_tag "default_pic.png",
+                      :style => "width: 100px; height: 100px; object-fit: cover; border-radius:50px",
+                      class:"rounded-circle"%>
+      <% end %>
+
     </div>
 
       <div class="name">
@@ -23,8 +29,31 @@
       </div>
 
   <h6>
-    <a href = '<%= new_post_path %>' class="btn btn-outline-dark btn-sm" role="button" aria-pressed="true"> <h4>Make a New Post</h4></a>
+    <a href = '<%= new_post_path %>' class="btn btn-outline-dark btn-sm small"  aria-pressed="true"> Make a New Post</a>
+    <a href = '<%= edit_user_path(@user) %>' class="btn btn-outline-dark btn-sm small"  aria-pressed="true"> Edit My Profile</a>
   </h6>
+
+
+  <div class="alert alert-warning" role="alert">
+    My Posts
+  </div>
+<%@number_of_posts = @user.posts.count %>
+<% current_user.posts.each do |post| %>
+  <div class="card text-black alert-warning mb-3" >
+
+    <div class="card-header">Post <%=@number_of_posts %></div>
+    <div class="card-body">
+      <p class="card-text"> <%=post.content %></p>
+    </div>
+    <% unless current_user.posts.include?(@post) %>
+    <%=   button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm" %>
+    <% end %>
+
+    <%@number_of_posts = @number_of_posts - 1 %>
+    <%end %>
+
+  </div>
+
     </div>
   </div>
 
