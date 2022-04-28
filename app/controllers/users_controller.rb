@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def liked_posts_of_user
+    @posts_liked = current_user.liked_posts
+  end
+
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
@@ -37,8 +41,11 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    @user = User.find(params[:id])
+    @user.assign_attributes(user_params)
+    @user.password = user_params[:password_hash]
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

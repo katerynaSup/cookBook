@@ -1,11 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Comments</h1>
+<h1>Comments for Recipe "<%=@post.title %>"</h1>
 
 <div id="comments">
   <% @comments.each do |comment| %>
     <%= render comment %>
     <p>
+      <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment) %>
     </p>
   <% end %>
 </div>

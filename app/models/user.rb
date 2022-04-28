@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :likes_counters, dependent: :destroy
-  has_many :liked_posts, through: :likes_counters, source: :posts
+  has_many :liked_posts, through: :likes_counters, source: :post
   has_one_attached :avatar
 
   validates :first_name, presence: true
@@ -18,8 +18,8 @@ class User < ApplicationRecord
     @password ||= Password.new(password_hash)
   end
 
-  def password=(new_pass)
-    @password = Password.create(new_pass)
+  def password=(new_password)
+    @password = Password.create(new_password)
     self.password_hash = @password
   end
 

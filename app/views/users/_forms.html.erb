@@ -1,12 +1,15 @@
+
 <style>
-    h1 {
-        font-family: Avenir, fantasy;}
+    h1 {font-family: Avenir, fantasy;}
+    h2 {font-family: Avenir, fantasy;font-size: 20px; color: black;font-weight: lighter}
     h6 {font-family: Avenir, fantasy;font-size: 28px; color: black;font-weight: bolder}
     h7 {font-family: Avenir, fantasy; font-size: 20px; color: black}
     h5 {font-family: Avenir, fantasy;font-size: 17px; font-weight: lighter;}
     h9 {font-family: Avenir, fantasy; font-size: 17px; font-weight: bold}
+    p {font-size: 25px;}
 
 </style>
+
 <div class="container-fluid">
     <div id="header"></div>
     <div id="profile">
@@ -28,33 +31,46 @@
        <h7>Username: @<%= @user.username %></h7>
       </div>
 
-  <h6>
-    <a href = '<%= new_post_path %>' class="btn btn-outline-dark btn-sm small"  aria-pressed="true"> Make a New Post</a>
-    <a href = '<%= edit_user_path(@user) %>' class="btn btn-outline-dark btn-sm small"  aria-pressed="true"> Edit My Profile</a>
-  </h6>
 
-
-  <div class="alert alert-warning" role="alert">
-    My Posts
-  </div>
-<%@number_of_posts = @user.posts.count %>
-<% current_user.posts.each do |post| %>
-  <div class="card text-black alert-warning mb-3" >
-
-    <div class="card-header">Post <%=@number_of_posts %></div>
-    <div class="card-body">
-      <p class="card-text"> <%=post.content %></p>
-    </div>
-    <% unless current_user.posts.include?(@post) %>
-    <%=   button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm" %>
+    <% if @user.eql? current_user %>
+    <h6>
+      <a href='<%=  new_post_path  %>' class="btn btn-outline-dark btn-sm small" aria-pressed="true"> Post a
+        Recipe</a>
+      <a href='<%=  edit_user_path(@user)  %>' class="btn btn-outline-dark btn-sm small" aria-pressed="true"> Edit My
+        Profile</a>
+      <a href="/<%= current_user.id %>/liked_recipes" class="btn btn-outline-dark btn-sm small" aria-pressed="true">
+        Recipes I liked</a>
+      </h6>
+    <% else  %>
+    <h6>
+      <a href="/<%= @user.id %>/liked_recipes" class="btn btn-outline-dark btn-sm small" aria-pressed="true">
+        Liked Recipes</a>
+    </h6>
     <% end %>
 
-    <%@number_of_posts = @number_of_posts - 1 %>
-    <%end %>
 
+
+  <div class="alert alert-warning" role="alert" style="width: 30rem";>
+    My Posts
   </div>
+<%@number_of_likes = @user.posts.count %>
+<%@user.posts.each do |post| %>
+  <div class="card text-black alert-warning mb-3" style="width: 70rem";>
+    <h6 class="card-title">  <%=post.title %> </h6>
+        <h2 class="card-subtitle mb-2 text-muted">
+          Likes: <%=post.users_who_liked.count %></h2>
+        <p class="card-text">Ingredients: <%=post.ingredients%></p>
+        <p class="card-text">Process:<%=post.content%></p>
 
+    <% unless current_user.liked_posts.include?(post) %>
+      <%=   button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm" %>
+      <%else %>
+    <%=  button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm"%>
+    <% end %>
     </div>
+   <%end %>
+
   </div>
+
 
 

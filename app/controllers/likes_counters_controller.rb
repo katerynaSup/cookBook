@@ -63,11 +63,13 @@ class LikesCountersController < ApplicationController
   
   def like_post
     puts 'Does not create likes counter'
-    LikesCounter.create([{ user: @user, post: @post }]) unless @user.posts.include?(@post)
+    LikesCounter.create([{ user: @user, post: @post}]) unless @user.liked_posts.include?(@post)
+    redirect_to @user
   end
   
   def unlike_post
-    LikesCounter.find_by(@user).destroy if @user.posts.include?(@post)
+    @post.users_who_liked.delete(@user) if @user.liked_posts.include?(@post)
+    redirect_to @user
   end
 
   private

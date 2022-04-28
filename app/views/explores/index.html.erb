@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Explores</h1>
+<h1>Showing Results for <%= @explore.hashtag_search %></h1>
+<%@result.each do |food| %>
+  <h1>Name of Dish: <%=food[name] %></h1>
+<% end %>
 
 <div id="explores">
   <% @explores.each do |explore| %>

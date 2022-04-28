@@ -1,17 +1,24 @@
-<div id="<%= dom_id user %>">
   <p>
-    <strong>First name:</strong>
-    <%= user.first_name %>
-  </p>
+  <div class="container-fluid">
+    <div class="card text-black alert-warning mb-3" style="width: 20rem";>
+    <div class="card-body">
+      <% unless user.eql? current_user %>
+        <% if user.avatar.attached? %>
+        <%= image_tag user.avatar,
+                    :style => "width: 100px; height: 100px; object-fit: cover; border-radius: 50px" %>
+        <% else %>
+        <%= image_tag "default_pic.png",
+                    :style => "width: 100px; height: 100px; object-fit: cover; border-radius:50px",
+                    class:"rounded-circle"%>
+        <% end %>
+        <h5 class="card-title"><%= user.username%></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%=user.full_name %></h6>
+        <p class="card-text">Number of recipes: <%=user.posts.count %></p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= user.last_name %>
-  </p>
+        <a href="<%=user_path(user)%>" class="btn btn-outline-dark btn-sm small"  aria-pressed="true">Show Profile</a>
+      <% end %>
+    </div>
+  </div>
+  </div>
 
-  <p>
-    <strong>Username:</strong>
-    <%= user.username %>
-  </p>
 
-</div>

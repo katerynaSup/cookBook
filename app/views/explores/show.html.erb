@@ -1,7 +1,25 @@
 <p style="color: green"><%= notice %></p>
+<style>
+    h1 {font-family: Avenir, fantasy;}
+    h2 {font-family: Avenir, fantasy;font-size: 20px; color: black;font-weight: lighter}
+    h6 {font-family: Avenir, fantasy;font-size: 28px; color: black;font-weight: bolder}
+    h7 {font-family: Avenir, fantasy; font-size: 20px; color: black}
+    h5 {font-family: Avenir, fantasy;font-size: 17px; font-weight: lighter;}
+    h9 {font-family: Avenir, fantasy; font-size: 17px; font-weight: bold}
+    p {font-size: 25px;}
+
+</style>
+
 
 <%= render @explore %>
 
+<h1>Showing Results for <%= @explore.hashtag_search %></h1>
+<%@result.each do |food| %>
+  <h6>Name of Dish: </h6> <h4><%=food["name"] %></h4>
+  <h6>Ingredients:</h6><h4><%=food["ingredients"] %></h4>
+  <h6>Servings:</h6><h4><%=food["servings"] %></h4>
+
+<% end %>
 <div>
   <%= link_to "Edit this explore", edit_explore_path(@explore) %> |
   <%= link_to "Back to explores", explores_path %>
