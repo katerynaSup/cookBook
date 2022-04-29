@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user, only: %i[index, show]
   before_action :set_search, only: %i[ show edit update destroy ]
 
   # GET /searches or /searches.json

@@ -3,7 +3,7 @@
 <%= render @comment %>
 
 <div>
-  <%= link_to "Edit this comment", edit_post_comment_path(@comment) %> |
+  <%= button_to 'Edit This Comment', edit_post_comment_path(@comment), method: :get, class:"btn btn-dark btn-sm"%>
   <%= link_to "Back to comments", post_comments_path(@post) %>
 
 

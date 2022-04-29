@@ -4,11 +4,10 @@
 
 <div id="comments">
   <% @comments.each do |comment| %>
-    <%= render comment %>
-    <p>
-      <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment) %>
-    </p>
-  <% end %>
+    <%if @post.comments.index(comment) %>
+      <%= render comment %>
+      <%= button_to 'Edit This Comment', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-outline-dark btn-sm"%>
+      <%= button_to "New comment", new_post_comment_path(@post),  method: :get, class:"btn btn-outline-dark btn-sm"%>
+      <%end %>
+    <% end %>
 </div>
-
-<%= link_to "New comment", new_post_comment_path(@post) %>

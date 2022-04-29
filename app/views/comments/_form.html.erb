@@ -10,18 +10,32 @@
       </ul>
     </div>
   <% end %>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase">New Comment</h2>
+  <div class="form-outline form-white mb-4">
+    <h3><%= form.label "Body", class:"form-outline form-white mb-4" %></h3>
     <%= form.text_area :body %>
   </div>
 
-  <div>
-    <%= form.label :post_id, style: "display: block" %>
-    <%= form.text_field :post_id %>
+              <div class="form-outline form-white mb-4">
+                <h3> <%= form.label "Post id; do not change", class:"form-outline form-white mb-4" %></h3>
+                <%= form.text_field :post_id %>
+                <h4> </h4>
+                <h4><button class="btn btn-outline-light btn-lg px-3" type="submit">Create Comment</button></h4>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   has_many :likes_counters, dependent: :destroy
   has_many :users_who_liked, through: :likes_counters, source: :user
   has_many_attached :images
+  
+  def posted_comments
+    comments.count
+  end
 end

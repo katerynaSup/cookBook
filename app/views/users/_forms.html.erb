@@ -1,4 +1,3 @@
-
 <style>
     h1 {font-family: Avenir, fantasy;}
     h2 {font-family: Avenir, fantasy;font-size: 20px; color: black;font-weight: lighter}
@@ -40,6 +39,7 @@
         Profile</a>
       <a href="/<%= current_user.id %>/liked_recipes" class="btn btn-outline-dark btn-sm small" aria-pressed="true">
         Recipes I liked</a>
+      <%= button_to "Destroy this user", @user, method: :delete, class:"btn btn-outline-dark btn-sm small" %>
       </h6>
     <% else  %>
     <h6>
@@ -51,26 +51,41 @@
 
 
   <div class="alert alert-warning" role="alert" style="width: 30rem";>
-    My Posts
+    My Recipes
   </div>
+
 <%@number_of_likes = @user.posts.count %>
 <%@user.posts.each do |post| %>
   <div class="card text-black alert-warning mb-3" style="width: 70rem";>
     <h6 class="card-title">  <%=post.title %> </h6>
         <h2 class="card-subtitle mb-2 text-muted">
-          Likes: <%=post.users_who_liked.count %></h2>
+          Likes: <%=post.users_who_liked.count %>   Comments: <%=post.posted_comments %></h2>
         <p class="card-text">Ingredients: <%=post.ingredients%></p>
         <p class="card-text">Process:<%=post.content%></p>
+    <div class="btn-group" role="group">
+      <% if current_user.liked_posts.include?(post) %>
+        <%=   button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class: "btn btn-outline-dark btn-sm" %>
+      <% else %>
+        <%=    button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-outline-dark btn-sm" %>
+      <% end %>
 
-    <% unless current_user.liked_posts.include?(post) %>
-      <%=   button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm" %>
-      <%else %>
-    <%=  button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-dark btn-sm"%>
-    <% end %>
+      <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+      <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
     </div>
-   <%end %>
-
   </div>
+
+  <div class="card alert alert-info" role="alert" style="width: 30rem";>
+    <h2>Comments:</h2>
+    <% post.comments.each { |comment| %>
+      <ul>
+        <li>
+          <%=  comment.body  %></li>
+      </ul>
+    <%  } %>
+    <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+  </div>
+  <%end %>
+</div>
 
 
 

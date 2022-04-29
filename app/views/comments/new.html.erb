@@ -1,9 +1,4 @@
-<h1>New comment</h1>
-
 <%= render "form", comment: @comment %>
+<%= button_to 'Back to Posts', posts_path(@post), method: :get, class:"btn btn-outline-dark btn-lg px-3"%>
 
-<br>
 
-<div>
-  <%= link_to "Back to comments", post_comments_path(@post) %>
-</div>
