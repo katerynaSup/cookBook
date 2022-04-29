@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<p style="color: green"></p>
 <style>
     h1 {font-family: Avenir, fantasy;}
     h2 {font-family: Avenir, fantasy;font-size: 20px; color: black;font-weight: lighter}
@@ -11,7 +11,12 @@
 
 <div id="<%= dom_id post %>">
   <div class="alert alert-warning" role="alert" style="width: 30rem";>
+    <%if @post.owner.eql?(current_user)%>
     <h6>My Recipe</h6>
+      <%else %>
+      <h6>Recipe of <%=current_user.username %></h6>
+    <%end %>
+
   </div>
   <%@number_of_likes = post.users_who_liked.count %>
     <div class="card text-black alert-warning mb-3" style="width: 70rem";>
@@ -29,7 +34,9 @@
 
         <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
         <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
-        <%= button_to "Edit This Post", edit_post_path(@post), method: :get, class: "btn btn-outline-dark btn-sm"%>
+        <%if current_user.eql? @user %>
+          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-outline-dark btn-sm"%>
+          <%end %>
       </div>
     </div>
 
@@ -44,14 +51,4 @@
       <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
     </div>
 </div>
-  <p>
-    <strong>User:</strong>
-    <%= post.user_id = current_user.id %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= post.content %>
-  </p>
-
 </div>

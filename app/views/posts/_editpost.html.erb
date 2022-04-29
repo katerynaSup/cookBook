@@ -1,0 +1,56 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <h2 class="fw-bold mb-2 text-uppercase">Edit Recipe</h2>
+
+              <div class="form-outline form-white mb-4">
+                <%= form.label "Do not change this number", style: "display: block" %>
+                <%= form.number_field :user_id, value: current_user.id %>
+              </div>
+
+              <div>
+                <%= form.label :title, style: "display: block" %>
+                <%= form.text_field :title %>
+              </div>
+
+              <div>
+                <%= form.label :ingredients, style: "display: block" %>
+                <%= form.text_field :ingredients %>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <%= form.label "Process", style: "display: block" %>
+                <%= form.text_field :content %>
+              </div>
+
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">Update the Recipe</button>
+
+              <div>
+                <p class="mb-0"> <a href= "<%=post_path(@post) %>" class="text-white-50 fw-bold"> Back To Post</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

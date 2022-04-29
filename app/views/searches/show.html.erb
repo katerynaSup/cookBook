@@ -10,8 +10,8 @@
     p {font-size: 25px;}
 
 </style>
-<%@actual_tag['%20'] = " " %>
-<h1>Showing Results for <%= @actual_tag %></h1>
+
+<h1>Showing Results for <%= @search.search_tag %></h1>
 <a href="<%=edit_search_path(@search)%>" class= "btn btn-outline-dark" role="button" aria-pressed="true">Edit Your Search</a>
 <a href="<%=searches_path%>" class= "btn btn-outline-dark" role="button" aria-pressed="true">Back to All Searches</a>
 <%= button_to "Destroy this search", @search, method: :delete, class: "btn btn-outline-dark" %>
@@ -25,4 +25,24 @@
       <li class="list-group-item">Servings:<h4><%=food["servings"] %></h4></li>
     </ul>
   </div>
+  <%end %>
+
+  <%Post.all.each do |post| %>
+    <%if post.title && post.title.index(@search.search_tag)%>
+    <div class="card text-black alert-warning mb-3" style="width: 70rem";>
+      <h6 class="card-title">  <%=post.title %> </h6>
+      <h2 class="card-subtitle mb-2 text-muted">
+        Likes: <%=post.users_who_liked.count %>   Comments: <%=post.posted_comments %></h2>
+      <p class="card-text">Ingredients: <%=post.ingredients%></p>
+      <p class="card-text">Process:<%=post.content%></p>
+      <div class="btn-group" role="group">
+        <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+        <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+        <%if current_user.eql? @user %>
+          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-outline-dark btn-sm"%>
+        <%end %>
+      </div>
+    </div>
+
+  <%end %>
 <%end %>

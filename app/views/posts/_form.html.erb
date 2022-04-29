@@ -2,7 +2,6 @@
   <% if post.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,7 +9,6 @@
       </ul>
     </div>
   <% end %>
-
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -43,7 +41,7 @@
                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Post the Recipe</button>
 
                 <div>
-                  <p class="mb-0"> <a href= "<%=post_path(@post) %>" class="text-white-50 fw-bold"> Back To Post</a>
+                  <p class="mb-0"> <a href= "<%=posts_path(post)%>" class="text-white-50 fw-bold"> Back To Post</a>
                   </p>
                 </div>
               </div>
@@ -52,5 +50,4 @@
         </div>
       </div>
     </div>
-
 <% end %>

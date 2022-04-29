@@ -1,8 +1,8 @@
-
+<%= button_to "Previous Searches", searches_path, method: :get, class: "btn btn-outline-dark bt-sm" %>
 <%= render "form", search: @search %>
 
 <br>
 
 <div>
-  <%= link_to "Back to searches", searches_path %>
+  <%= button_to "Back to profile", user_path(current_user), method: :get, class: "btn btn-outline-dark bt-sm" %>
 </div>

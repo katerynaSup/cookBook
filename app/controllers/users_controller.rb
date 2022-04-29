@@ -1,14 +1,18 @@
+# frozen_string_literal: true
+
+# Controls the user
+
+# Creates user, deletes, updates
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :authenticate_user, only: %i[index, show]
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :authenticate_user, only: %i[index show]
   # GET /users or /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1 or /users/1.json
-  def show
-  end
+  def show; end
 
   # GET /users/new
   def new
@@ -16,8 +20,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   def liked_posts_of_user
     @posts_liked = current_user.liked_posts
@@ -30,7 +33,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+        format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
     @user.password = user_params[:password_hash]
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+        format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,18 +63,19 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to '/logout', notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:username, :first_name, :last_name, :password_hash, :avatar)
   end

@@ -15,7 +15,6 @@ class SearchesController < ApplicationController
     require 'uri'
     require 'net/http'
     require 'openssl'
-    @actual_tag = @search.search_tag
     new_tag = render_search_tag
     url = URI("https://recipesapi2.p.rapidapi.com/recipes/#{new_tag}?maxRecipes=10")
     http = Net::HTTP.new(url.host, url.port)

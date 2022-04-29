@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def posted_comments
     comments.count
   end
+
+  def owner
+    self.user
+  end
 end
