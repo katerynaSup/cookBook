@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :likes_counters
-  resources :likes
   resources :users
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
