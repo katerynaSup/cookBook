@@ -7,10 +7,10 @@
     <%= render search %>
     <p>
     <div class="btn-group" role="group">
-      <%= button_to "Show this search", search, method: :get, class: "btn btn-outline-dark"%>
-      <%= button_to "Delete this search", search, method: :delete, class: "btn btn-outline-dark bt-sm" %>
+      <%= button_to "Show this search", search, method: :get, class: "btn btn-primary"%>
+      <%= button_to "Delete this search", search, method: :delete, class: "btn btn-primary" %>
     </div>
     </p>
   <% end %>
 </div>
-<%= button_to "New search", new_search_path, method: :get, class: "btn btn-outline-dark bt-sm" %>
+<%= button_to "New search", new_search_path, method: :get, class: "btn btn-primary" %>

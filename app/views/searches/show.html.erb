@@ -10,11 +10,19 @@
     p {font-size: 25px;}
 
 </style>
+<% if @search.search_tag["%20"] %>
+  <%@search.search_tag["%20"] = " " %>
+  <%end %>
 
 <h1>Showing Results for <%= @search.search_tag %></h1>
-<a href="<%=edit_search_path(@search)%>" class= "btn btn-outline-dark" role="button" aria-pressed="true">Edit Your Search</a>
-<a href="<%=searches_path%>" class= "btn btn-outline-dark" role="button" aria-pressed="true">Back to All Searches</a>
-<%= button_to "Destroy this search", @search, method: :delete, class: "btn btn-outline-dark" %>
+
+<% if @search.search_tag[" "] %>
+  <%@search.search_tag[" "] = "%20" %>
+<%end %>
+
+<a href="<%=edit_search_path(@search)%>" class= "btn btn-primary px-5" role="button" aria-pressed="true">Edit Your Search</a>
+<a href="<%=searches_path%>" class= "btn btn-primary px-5" role="button" aria-pressed="true">Back to All Searches</a>
+<%= button_to "Destroy this search", @search, method: :delete, class: "btn btn-primary px-5" %>
 <%@result.each do |food| %>
   <div class="card alert-warning" style="width: 80rem;">
     <div class="card-header">
@@ -36,10 +44,10 @@
       <p class="card-text">Ingredients: <%=post.ingredients%></p>
       <p class="card-text">Process:<%=post.content%></p>
       <div class="btn-group" role="group">
-        <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
-        <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+        <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-primary px-5"%>
+        <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-primary px-5"%>
         <%if current_user.eql? @user %>
-          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-outline-dark btn-sm"%>
+          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-primary px-5"%>
         <%end %>
       </div>
     </div>

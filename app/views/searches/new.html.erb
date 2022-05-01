@@ -1,8 +1,6 @@
-<%= button_to "Previous Searches", searches_path, method: :get, class: "btn btn-outline-dark bt-sm" %>
+<%= button_to "Previous Searches", searches_path, method: :get, class: "btn btn-primary px-5" %>
 <%= render "form", search: @search %>
-
 <br>
-
 <div>
-  <%= button_to "Back to profile", user_path(current_user), method: :get, class: "btn btn-outline-dark bt-sm" %>
+  <%= button_to "Back to profile", user_path(current_user), method: :get, class: "btn btn-primary px-5" %>
 </div>

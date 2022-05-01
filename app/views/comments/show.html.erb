@@ -2,9 +2,7 @@
 
 <%= render @comment %>
 <div>
-  <%if current_user.eql? @user%>
-    <%= button_to 'Edit This Comment', edit_post_comment_path(@comment), method: :get, class:"btn btn-dark btn-sm"%>
-    <%end %>
-  <%= link_to "Back to comments", post_comments_path(@post) %>
+  <%= button_to 'Edit This Comment', edit_post_comment_path(@comment), method: :get, class:"btn btn-dark btn-sm"%>
+  <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-primary btn-sm"%>
   <h4> </h4>
 </div>

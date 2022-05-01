@@ -7,11 +7,9 @@
     <%if @post.comments.index(comment) %>
       <%= render comment %>
     <%end %>
-    <%if current_user.eql? @user%>
-      <%= button_to 'Edit This Comment', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-outline-dark btn-sm"%>
-    <%end %>
+      <%= button_to 'Edit This Comment', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-primary btn-sm"%>
   <% end %>
 
-      <%= button_to "New comment", new_post_comment_path(@post),  method: :get, class:"btn btn-outline-dark btn-sm"%>
+      <%= button_to "New comment", new_post_comment_path(@post),  method: :get, class:"btn btn-primary btn-sm"%>
 
 </div>

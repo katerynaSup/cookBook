@@ -49,7 +49,7 @@ class SearchesController < ApplicationController
     @search = Search.new(search_params)
     respond_to do |format|
       if @search.save
-        format.html { redirect_to search_url(@search), notice: 'Search was successfully created.' }
+        format.html { redirect_to search_url(@search) }
         format.json { render :show, status: :created, location: @search }
       else
         format.html { render :new, status: :unprocessable_entity }

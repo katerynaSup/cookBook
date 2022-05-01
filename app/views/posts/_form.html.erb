@@ -14,9 +14,8 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
-
               <div class="mb-md-5 mt-md-4 pb-5">
-                <h2 class="fw-bold mb-2 text-uppercase">New Recipe</h2>
+                <h2 class="fw-bold mb-2 text-uppercase text-light">New Recipe</h2>
 
                 <div class="form-outline form-white mb-4">
                   <%= form.label "Do not change this number", style: "display: block" %>
@@ -37,9 +36,7 @@
                     <%= form.label "Process", style: "display: block" %>
                     <%= form.text_field :content %>
                 </div>
-
-                <button class="btn btn-outline-light btn-lg px-5" type="submit">Post the Recipe</button>
-
+                <button class="btn btn-secondary btn-lg" type="submit">Post the Recipe</button>
                 <div>
                   <p class="mb-0"> <a href= "<%=posts_path(post)%>" class="text-white-50 fw-bold"> Back To Post</a>
                   </p>

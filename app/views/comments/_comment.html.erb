@@ -15,9 +15,9 @@
           <p class="card-text"><%= comment.body %></p>
           <div class="btn-group" role="group">
             <%if current_user.eql? @user %>
-              <%= button_to 'Destroy Comment', [@post, comment], method: :delete, class:"btn btn-outline-dark btn-sm"%>
+              <%= button_to 'Destroy Comment', [@post, comment], method: :delete, class:"btn btn-primary btn-sm"%>
               <%end %>
-          <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-outline-dark btn-sm"%>
+          <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-primary btn-sm"%>
           </div>
         </div>
       </div>

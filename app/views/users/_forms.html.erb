@@ -33,13 +33,13 @@
 
     <% if @user.eql? current_user %>
     <h6>
-      <a href='<%=  new_post_path  %>' class="btn btn-outline-dark btn-sm small" aria-pressed="true"> Post a
+      <a href='<%=  new_post_path  %>' class="btn btn-primary" aria-pressed="true"> Post a
         Recipe</a>
-      <a href='<%=  edit_user_path(@user)  %>' class="btn btn-outline-dark btn-sm small" aria-pressed="true"> Edit My
+      <a href='<%=  edit_user_path(@user)  %>' class="btn btn-primary" aria-pressed="true"> Edit My
         Profile</a>
-      <a href="/<%= current_user.id %>/liked_recipes" class="btn btn-outline-dark btn-sm small" aria-pressed="true">
+      <a href="/<%= current_user.id %>/liked_recipes" class="btn btn-primary" aria-pressed="true">
         Recipes I liked</a>
-      <%= button_to "Destroy this user", @user, method: :delete, class:"btn btn-outline-dark btn-sm small" %>
+      <%= button_to "Destroy this user", @user, method: :delete, class:"btn btn-secondary" %>
       </h6>
     <% else  %>
     <h6>
@@ -56,21 +56,20 @@
 
 <%@number_of_likes = @user.posts.count %>
 <%@user.posts.each do |post| %>
-  <div class="card text-black alert-warning mb-3" style="width: 70rem";>
+  <div class="card text-black bg-color3 mb-3" style="width: 70rem";>
     <h6 class="card-title">  <%=post.title %> </h6>
-        <h2 class="card-subtitle mb-2 text-muted">
-          Likes: <%=post.users_who_liked.count %>   Comments: <%=post.posted_comments %></h2>
+        <h2 class="card-subtitle mb-2 text-muted">Likes: <%=post.users_who_liked.count %>   Comments: <%=post.posted_comments %></h2>
         <p class="card-text">Ingredients: <%=post.ingredients%></p>
         <p class="card-text">Process:<%=post.content%></p>
     <div class="btn-group" role="group">
       <% if current_user.liked_posts.include?(post) %>
-        <%=   button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class: "btn btn-outline-dark btn-sm" %>
+        <%=   button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class: "btn btn-primary" %>
       <% else %>
-        <%=    button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-outline-dark btn-sm" %>
+        <%=    button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-primary" %>
       <% end %>
 
-      <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
-      <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+      <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-primary"%>
+      <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-primary"%>
     </div>
   </div>
 
@@ -82,7 +81,7 @@
           <%=  comment.body  %></li>
       </ul>
     <%  } %>
-    <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+    <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-primary"%>
   </div>
   <%end %>
 </div>

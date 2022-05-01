@@ -11,15 +11,11 @@
 
 <div id="<%= dom_id post %>">
   <div class="alert alert-warning" role="alert" style="width: 30rem";>
-    <%if @post.owner.eql?(current_user)%>
     <h6>My Recipe</h6>
-      <%else %>
-      <h6>Recipe of <%=current_user.username %></h6>
-    <%end %>
 
   </div>
   <%@number_of_likes = post.users_who_liked.count %>
-    <div class="card text-black alert-warning mb-3" style="width: 70rem";>
+    <div class="card text-black" style="width: 70rem";>
       <h6 class="card-title">  <%=post.title %> </h6>
       <h2 class="card-subtitle mb-2 text-muted">
         Likes: <%=post.users_who_liked.count %>   Comments: <%=post.posted_comments %></h2>
@@ -27,18 +23,18 @@
       <p class="card-text">Process:<%=post.content%></p>
       <div class="btn-group" role="group">
         <% if current_user.liked_posts.include?(post) %>
-          <%=   button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class: "btn btn-outline-dark btn-sm" %>
+          <%=   button_to "Unlike", "/unlike_post/#{current_user.id}/#{post.id}", :method => :post, class: "btn btn-primary btn-sm" %>
         <% else %>
-          <%=    button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-outline-dark btn-sm" %>
+          <%=    button_to "Like", "/like_post/#{current_user.id}/#{post.id}", :method => :post, class:"btn btn-primary" %>
         <% end %>
 
-        <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
-        <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+        <%=  button_to "See Post", "#{post_path(post)}", :method => :get, class:"btn btn-primary"%>
+        <%=  button_to "See Comments", "#{post_comments_path(post)}", :method => :get, class:"btn btn-primary"%>
         <%if current_user.eql? @user %>
-          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-outline-dark btn-sm"%>
+          <%= button_to "Edit This Post", edit_post_path(post), method: :get, class: "btn btn-primary"%>
           <%end %>
       </div>
-    </div>
+  </div>
 
     <div class="card alert alert-info" role="alert" style="width: 30rem";>
       <h2>Comments:</h2>
@@ -48,7 +44,6 @@
             <%=  comment.body  %></li>
         </ul>
       <%  } %>
-      <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-outline-dark btn-sm"%>
+      <%=  button_to "Make a New Comment", "#{new_post_comment_path(post)}", :method => :get, class:"btn btn-primary"%>
     </div>
-</div>
 </div>

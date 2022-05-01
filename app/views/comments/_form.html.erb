@@ -18,17 +18,17 @@
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2 class="fw-bold mb-2 text-uppercase">New Comment</h2>
+              <h2 class="fw-bold mb-2 text-uppercase text-light align-content-center">New Comment</h2>
   <div class="form-outline form-white mb-4">
-    <h3><%= form.label "Body", class:"form-outline form-white mb-4" %></h3>
+    <h3><%= form.label "Body", class:"form-outline form-white mb-4 text-light" %></h3>
     <%= form.text_area :body %>
   </div>
 
               <div class="form-outline form-white mb-4">
-                <h3> <%= form.label "Post id; do not change", class:"form-outline form-white mb-4" %></h3>
+                <h3> <%= form.label "Post id; do not change", class:"form-outline form-white mb-4 text-light" %></h3>
                 <%= form.text_field :post_id, value: :p %>
                 <h4> </h4>
-                <h4><button class="btn btn-outline-light btn-lg px-3" type="submit">Create Comment</button></h4>
+                <h4><button class="btn btn-primary btn-sm" type="submit">Create Comment</button></h4>
 
               </div>
             </div>

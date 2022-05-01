@@ -2,5 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
-import "bootstrap"
+import 'bootstrap/scss/bootstrap';
 import "./src/application.scss";

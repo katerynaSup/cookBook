@@ -9,7 +9,8 @@
     p {font-size: 25px;}
 
 </style>
-<%= button_to "Back to Profile", user_path(current_user), method: :get, class: "btn btn-outline-dark bt-sm" %>
+<%= button_to "Back to Profile", user_path(current_user), method: :get, class: "btn btn-primary px-5" %>
+<%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-primary px-5" %>
 <%= render @post %>
 <div>
 </div>
