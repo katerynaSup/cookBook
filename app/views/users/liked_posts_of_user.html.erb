@@ -11,6 +11,7 @@
 
 <div class="alert alert-warning" role="alert">
   <h2>Total liked recipes: <%=@posts_liked.count %></h2>
+  <%=   button_to "Back To Profile", "#{current_user.id}", :method => :post, class:"btn btn-dark btn-sm" %>
 </div>
 <% @posts_liked.each do |post| %>
   <div class="card text-black alert-warning mb-3" style="width: 78rem";>
