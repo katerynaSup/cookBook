@@ -6,7 +6,6 @@
   <% @comments.each do |comment| %>
     <%if @post.comments.index(comment) %>
       <%= render comment %>
-      <%= button_to 'Edit This Comment', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-primary btn-sm"%>
 <%end %>
   <% end %>
 

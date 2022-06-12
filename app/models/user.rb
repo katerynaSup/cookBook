@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :likes_counters, dependent: :destroy
   has_many :liked_posts, through: :likes_counters, source: :post
   has_one_attached :avatar
+  has_many :comments
 
   validates :first_name, presence: true
   validates :last_name, presence: true

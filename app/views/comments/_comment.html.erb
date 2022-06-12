@@ -14,10 +14,15 @@
         <div class="card-body">
           <p class="card-text"><%= comment.body %></p>
           <div class="btn-group" role="group">
-            <%if current_user.eql? @user %>
+            <%if comment.owner == true %>
               <%= button_to 'Destroy Comment', [@post, comment], method: :delete, class:"btn btn-primary btn-sm"%>
-              <%end %>
-          <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-primary btn-sm"%>
+            <%end %>
+
+            <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-primary btn-sm"%>
+
+            <%if comment.owner == true %>
+              <%= button_to 'Edit This Comment', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-primary btn-sm"%>
+            <%end%>
           </div>
         </div>
       </div>

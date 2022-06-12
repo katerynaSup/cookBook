@@ -26,7 +26,9 @@
 
               <div class="form-outline form-white mb-4">
                 <h3> <%= form.label "Post id; do not change", class:"form-outline form-white mb-4 text-light" %></h3>
-                <%= form.text_field :post_id, value: :p %>
+                <%= form.text_field :post_id, value: :_ %>
+                <h3> <%= form.label "User id; do not change", class:"form-outline form-white mb-4 text-light" %></h3>
+                <%= form.text_field :user_id, value: current_user.id %>
                 <h4> </h4>
                 <h4><button class="btn btn-primary btn-sm" type="submit">Create Comment</button></h4>
 
