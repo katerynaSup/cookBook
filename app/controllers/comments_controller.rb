@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user, only: %i[index show update destroy edit]
   before_action :set_post
+  before_action :set_owner, only: %i[ index show edit update destroy ]
   before_action :set_comment, only: %i[ show edit update destroy ]
   # GET /comments or /comments.json
   def index
@@ -67,6 +68,10 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_owner
+    @comment_owner = params[:user_id]
   end
 
   # Only allow a list of trusted parameters through.

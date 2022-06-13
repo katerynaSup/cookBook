@@ -6,9 +6,8 @@
   <% @comments.each do |comment| %>
     <%if @post.comments.index(comment) %>
       <%= render comment %>
-<%end %>
+    <%end %>
   <% end %>
-
-      <%= button_to "New comment", new_post_comment_path(@post),  method: :get, class:"btn btn-primary btn-sm"%>
+  <%= button_to "New comment", new_post_comment_path(@post),  method: :get, class:"btn btn-primary btn-sm"%>
 
 </div>

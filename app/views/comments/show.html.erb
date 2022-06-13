@@ -2,7 +2,7 @@
 
 <%= render @comment %>
 <div>
-  <%= button_to 'Edit This Comment', edit_post_comment_path(@comment), method: :get, class:"btn btn-dark btn-sm"%>
+  <% button_to 'Edit This Comment', edit_post_comment_path(@comment), method: :get, class:"btn btn-dark btn-sm"%>
   <%= button_to 'Back to Post', @post, method: :get, class:"btn btn-primary btn-sm"%>
   <h4> </h4>
 </div>
