@@ -5,4 +5,4 @@ On this website you can:
 * Share your recipes.
 * Check out other people's recipes: like them, comment on them.
 * Look up existing recipes from RecipesAPI.
-* Your recipe search history will be saved and you can clear it after.
+* Your recipe search history will be saved and you can clear it afterwards.
