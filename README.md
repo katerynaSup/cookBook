@@ -1,24 +1,8 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Open http://cook-book-food.herokuapp.com/ to go to the website.
+On this website you can:
+* Create a profile.
+* Share your recipes.
+* Check out other people's recipes: like them, comment on them.
+* Look up existing recipes from RecipesAPI.
+* Your recipe search history will be saved and you can clear it after.
